@@ -2,7 +2,7 @@ import { useState, useRef } from "react"
 
 import "./register.scss"
 
-export default function Register() {
+const Register = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
@@ -52,3 +52,5 @@ export default function Register() {
     </div>
   )
 }
+
+export default Register

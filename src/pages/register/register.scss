@@ -11,6 +11,10 @@
   position: relative;
 
   .top {
+    position: absolute;
+    width: 100%;
+    z-index: 100;
+
     .wrapper {
       padding: 20px 50px;
       display: flex;
@@ -68,21 +72,21 @@
       height: 50px;
       border-radius: 5px;
 
-      input{
-          flex: 9;
-          height: 100%;
-          border: none;
-          padding: 0 10px;
+      input {
+        flex: 9;
+        height: 100%;
+        border: none;
+        padding: 0 10px;
       }
 
-      .registerButton{
-          flex: 3;
-          height: 100%;
-          background-color: red;
-          border: none;
-          color: white;
-          font-size: 22px;
-          cursor: pointer;
+      .registerButton {
+        flex: 3;
+        height: 100%;
+        background-color: red;
+        border: none;
+        color: white;
+        font-size: 22px;
+        cursor: pointer;
       }
     }
   }

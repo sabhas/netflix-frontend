@@ -29,8 +29,8 @@ const Login = () => {
         <form>
           <h1>Sign In</h1>
           <input
-            type="email"
-            placeholder="Email or phone number"
+            type="username"
+            placeholder="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />

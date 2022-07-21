@@ -12,8 +12,6 @@ const Register = () => {
   const [password, setPassword] = useState("")
 
   const emailRef = useRef<HTMLInputElement>(null)
-  const usernameRef = useRef<HTMLInputElement>(null)
-  const passwordRef = useRef<HTMLInputElement>(null)
 
   const handleStart = () => {
     if (emailRef.current) setEmail(emailRef.current.value)
@@ -22,8 +20,6 @@ const Register = () => {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault()
-    if (usernameRef.current) setUsername(usernameRef.current.value)
-    if (passwordRef.current) setPassword(passwordRef.current.value)
     try {
       await axios.post("auth/register", { email, username, password })
       navigate("/login")
@@ -64,8 +60,18 @@ const Register = () => {
           </div>
         ) : (
           <form className="input">
-            <input type="username" placeholder="username" ref={usernameRef} />
-            <input type="password" placeholder="password" ref={passwordRef} />
+            <input
+              type="username"
+              placeholder="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
             <button className="registerButton" onClick={handleFinish}>
               Start
             </button>

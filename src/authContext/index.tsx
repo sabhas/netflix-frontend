@@ -16,7 +16,7 @@ const user = localStorage.getItem("user")
 interface AuthContextProps {
   state: AuthContextState
   dispatch: Dispatch<AuthContextDispatchTypes>
-  login: (userName: string, password: string) => void
+  login: (username: string, password: string) => void
 }
 
 const INITIAL_STATE = {
@@ -25,13 +25,13 @@ const INITIAL_STATE = {
   error: false,
 }
 
-const AuthContext = createContext<AuthContextProps>({
+export const AuthContext = createContext<AuthContextProps>({
   state: INITIAL_STATE,
   dispatch: () => null,
-  login: (userName: string, password: string) => {},
+  login: (username: string, password: string) => {},
 })
 
-const AuthProvider = (props: { children: ReactNode }) => {
+const AuthContextProvider = (props: { children: ReactNode }) => {
   const { children } = props
   const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE)
 
@@ -62,4 +62,4 @@ const AuthProvider = (props: { children: ReactNode }) => {
   )
 }
 
-export default AuthProvider
+export default AuthContextProvider

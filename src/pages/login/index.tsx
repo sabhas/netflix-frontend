@@ -1,7 +1,19 @@
+import { useState, useContext } from "react"
 import { Link } from "react-router-dom"
 import "./login.scss"
 
+import { AuthContext } from "../../authContext"
+
 const Login = () => {
+  const authContext = useContext(AuthContext)
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
+
+  const handleLogin = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault()
+    authContext.login(username, password)
+  }
+
   return (
     <div className="login">
       <div className="top">
@@ -16,9 +28,21 @@ const Login = () => {
       <div className="container">
         <form>
           <h1>Sign In</h1>
-          <input type="email" placeholder="Email or phone number" />
-          <input type="password" placeholder="Password" />
-          <button className="loginButton">Sign In</button>
+          <input
+            type="email"
+            placeholder="Email or phone number"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button className="loginButton" onClick={handleLogin}>
+            Sign In
+          </button>
           <span>
             New to Netflix?{" "}
             <Link to="/register">

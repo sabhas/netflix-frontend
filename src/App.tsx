@@ -1,14 +1,17 @@
 import "./app.scss"
+import { useContext } from "react"
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import Home from "./pages/home"
 import Login from "./pages/login"
 import Register from "./pages/register"
 import Watch from "./pages/watch"
 
-const App = () => {
-  const user = true
+import { AuthContext } from "./authContext"
 
-  if (!user) {
+const App = () => {
+  const { state } = useContext(AuthContext)
+
+  if (!state.user) {
     return (
       <BrowserRouter>
         <Routes>

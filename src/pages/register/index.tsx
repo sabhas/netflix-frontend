@@ -1,22 +1,35 @@
 import { useState, useRef } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import axios from "axios"
 import { Button } from "@mui/material"
 
 import "./register.scss"
 
 const Register = () => {
+  const navigate = useNavigate()
   const [email, setEmail] = useState("")
+  const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
 
   const emailRef = useRef<HTMLInputElement>(null)
+  const usernameRef = useRef<HTMLInputElement>(null)
   const passwordRef = useRef<HTMLInputElement>(null)
 
   const handleStart = () => {
     if (emailRef.current) setEmail(emailRef.current.value)
   }
-  const handleFinish = () => {
+  const handleFinish = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault()
+    if (usernameRef.current) setUsername(usernameRef.current.value)
     if (passwordRef.current) setPassword(passwordRef.current.value)
+    try {
+      await axios.post("auth/register", { email, username, password })
+      navigate("/login")
+    } catch (err) {}
   }
+
   return (
     <div className="register">
       <div className="top">
@@ -51,6 +64,7 @@ const Register = () => {
           </div>
         ) : (
           <form className="input">
+            <input type="username" placeholder="username" ref={usernameRef} />
             <input type="password" placeholder="password" ref={passwordRef} />
             <button className="registerButton" onClick={handleFinish}>
               Start

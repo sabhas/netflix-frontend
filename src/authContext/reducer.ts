@@ -8,24 +8,28 @@ const AuthReducer = (
     case ActionType.LOGIN_START:
       return {
         user: null,
+        accessToken: null,
         isFetching: true,
         error: false,
       }
     case ActionType.LOGIN_SUCCESS:
       return {
-        user: action.payload,
+        user: action.payload.userResponse,
+        accessToken: action.payload.accessToken,
         isFetching: false,
         error: false,
       }
     case ActionType.LOGIN_FAILURE:
       return {
         user: null,
+        accessToken: null,
         isFetching: false,
         error: true,
       }
     case ActionType.LOGOUT:
       return {
         user: null,
+        accessToken: null,
         isFetching: false,
         error: false,
       }

@@ -1,9 +1,12 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { Link } from "react-router-dom"
+import { Button } from "@mui/material"
 import { ArrowDropDown, Notifications, Search } from "@mui/icons-material"
 import "./navbar.scss"
+import { AuthContext } from "../../authContext"
 
 const Navbar = () => {
+  const { logout } = useContext(AuthContext)
   const [isScrolled, setIsScrolled] = useState(false)
 
   window.onscroll = () => {
@@ -42,7 +45,7 @@ const Navbar = () => {
             <ArrowDropDown className="icon" />
             <div className="options">
               <span>Settings</span>
-              <span>Logout</span>
+              <Button onClick={() => logout()}>Logout</Button>
             </div>
           </div>
         </div>

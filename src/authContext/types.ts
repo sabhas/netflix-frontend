@@ -2,6 +2,7 @@ import { User } from "../types"
 
 export interface AuthContextState {
   user: User | null
+  accessToken: string | null
   isFetching: boolean
   error: boolean
 }
@@ -19,7 +20,7 @@ export interface LoginStart {
 
 export interface LoginSuccess {
   type: ActionType.LOGIN_SUCCESS
-  payload: User
+  payload: { userResponse: User; accessToken: string }
 }
 
 export interface LoginFailure {

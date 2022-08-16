@@ -11,9 +11,12 @@ export const loginStart = (): LoginStart => ({
   type: ActionType.LOGIN_START,
 })
 
-export const loginSuccess = (user: User): LoginSuccess => ({
+export const loginSuccess = (
+  userResponse: User,
+  accessToken: string
+): LoginSuccess => ({
   type: ActionType.LOGIN_SUCCESS,
-  payload: user,
+  payload: { userResponse, accessToken },
 })
 
 export const loginFailure = (): LoginFailure => ({
